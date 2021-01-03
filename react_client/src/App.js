@@ -7,6 +7,7 @@ import "./App.css";
 function App() {
 	/****************************************************/
 	// Here all the event handlers for Buttons are present
+	const [names, setNames] = useState([]);
 
 	const addNameHandler = () => {
 		console.log(document.getElementById("name-input").value);
@@ -27,10 +28,9 @@ function App() {
 				return res.json();
 			})
 			.then((data) => {
+				setNames([...names, data["data"]]);
 				console.log(data);
 			});
-
-		window.location.reload();
 	};
 
 	/**************************************************/
@@ -53,7 +53,9 @@ function App() {
 					<button id="search-btn">Search</button>
 				</div>
 
-				<Table />
+				<UserContext.Provider value={{ names, setNames }}>
+					<Table />
+				</UserContext.Provider>
 			</main>
 		</>
 	);

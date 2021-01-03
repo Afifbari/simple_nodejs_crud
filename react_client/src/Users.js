@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+	useState,
+	useEffect,
+	useRef,
+	useContext,
+} from "react";
 import Moment from "react-moment";
 // import App from "./App";
 import { UserContext } from "./UserContext";
@@ -6,7 +11,7 @@ import { UserContext } from "./UserContext";
 const url = "http://localhost:5000/getAll";
 
 const Users = () => {
-	const [names, setNames] = useState([]);
+	const { names, setNames } = useContext(UserContext);
 
 	const updateInput = useRef(null);
 	const editSection = useRef(null);
